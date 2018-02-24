@@ -1,8 +1,10 @@
 import pefile, argparse, os, hashlib
+from capstone import *
 
 parser = argparse.ArgumentParser(description='Pe Analyzer')
 parser.add_argument('--file', help='FILE NAME')
 parser.add_argument('--show', help='all')
+parser.add_argument('--disassemble', help='all')
 
 args = parser.parse_args()
 
@@ -269,9 +271,28 @@ def show():
         print(entry.dll.decode('utf-8'))
         for imps in entry.imports:
             print('\t', hex(imps.address), imps.name)
+
+def disassemble():
+    pe = pefile.PE(args.file)
+
+    eop = pe.OPTIONAL_HEADER.AddressOfEntryPoint
+    code_section = pe.get_section_by_rva(eop)
+
+    code_dump = code_section.get_data()
+    code_addr = pe.OPTIONAL_HEADER.ImageBase + code_section.VirtualAddress
+
+    md = Cs(CS_ARCH_X86, CS_MODE_64)
+
+    for i in md.disasm(code_dump, code_addr):
+        print("0x%x:\t%s\t%s" %(i.address, i.mnemonic, i.op_str))
 try:
-    if args.show == 'all':
-        show()
+    if args.file != '':
+        if args.show == 'all':
+            show()
+        elif args.disassemble == 'all':
+            disassemble();
+        else:
+            parser.print_help()
     else:
         parser.print_help()
 except Exception as err:
