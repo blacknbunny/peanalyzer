@@ -5,9 +5,7 @@ Advanced Portable Executable File Analyzer
 
 ## Usage
   python pyanalyzer.py --file file.exe --show all
-  
-## Upcoming
-  **_File And Section Disassemble_**
+  python pyanalyzer.py --file file.exe --disassemble all
  
 ## Asciinema
   https://asciinema.org/a/5yBJgGZaFdOXNvsoE0SR8LIRC
