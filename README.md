@@ -5,6 +5,7 @@ Advanced Portable Executable File Analyzer
 
 ## Usage
   python pyanalyzer.py --file file.exe --show all
+  
   python pyanalyzer.py --file file.exe --disassemble all
  
 ## Asciinema
