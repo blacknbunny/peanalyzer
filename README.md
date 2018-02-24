@@ -1,13 +1,13 @@
 # peanalyzer
 Advanced Portable Executable File Analyzer
 
-**Python 3.6.4 Tested (Working)**
+**_Python 3.6.4 Tested (Working)_**
 
 ## Usage
   python pyanalyzer.py --file file.exe --show all
   
 ## Upcoming
-  **File And Section Disassemble**
+  **_File And Section Disassemble_**
  
 ## Asciinema
   https://asciinema.org/a/5yBJgGZaFdOXNvsoE0SR8LIRC
