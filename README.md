@@ -10,7 +10,7 @@ Advanced Portable Executable File Analyzer
   
 ## Installation
   ```
-  git clone https://github.com/blacknbunny/peanalyzer.git
+  git clone https://github.com/blacknbunny/peanalyzer.git && cd peanalyzer/
   pip install pefile
   pip install capstone
   ```
