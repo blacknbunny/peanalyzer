@@ -1,12 +1,19 @@
 # peanalyzer
 Advanced Portable Executable File Analyzer
 
-**_Python 3.6.4 Tested (Working)_**
+**_Python 3.6.4 & Linux : Tested (Working)_**
 
 ## Usage
   python pyanalyzer.py --file file.exe --show all
   
   python pyanalyzer.py --file file.exe --disassemble all
+  
+## Installation
+  ```
+  git clone https://github.com/blacknbunny/peanalyzer.git
+  pip install pefile
+  pip install capstone
+  ```
  
 ## Asciinema
   https://asciinema.org/a/5yBJgGZaFdOXNvsoE0SR8LIRC
