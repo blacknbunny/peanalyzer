@@ -1,7 +1,7 @@
 # peanalyzer
 Advanced Portable Executable File Analyzer
 
-**_Python 3.6.4 & Linux : Tested (Working)_**
+**_Python 3.6.4 & Linux(for disassemble option) : Tested (Working)_**
 
 ## Usage
   python pyanalyzer.py --file file.exe --show all
