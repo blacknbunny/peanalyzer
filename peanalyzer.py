@@ -30,12 +30,13 @@ def offset_increase(variable, offset):
 
 def show():
     PE_FILE                     = pefile.PE(args.file)
+    target_file                 = os.path.abspath(args.file)
 
     # GENERAL
-    PATH                        = os.path.dirname(os.path.abspath(__file__)) + "/" + args.file
-    FILE_SIZE                   = str(os.path.getsize(os.path.dirname(os.path.abspath(__file__))))
-    MD5_CHECKSUM                = md5(os.path.dirname(os.path.abspath(__file__)) + "/" + args.file)
-    SHA1_CHECKSUM               = sha1(os.path.dirname(os.path.abspath(__file__)) + "/" + args.file)
+    PATH                        = target_file
+    FILE_SIZE                   = str(os.path.getsize(target_file))
+    MD5_CHECKSUM                = md5(target_file)
+    SHA1_CHECKSUM               = sha1(target_file)
     CHECKSUM                    = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.CheckSum))
 
     # DOS HEADER
@@ -180,36 +181,36 @@ def show():
     print(offset_increase(OFFSET_VALUE, 26) + "\t" + "\t\tCharacteristics\t\t "       + Characteristics)
 
     print("\n-------------------------------------------------------------------------\n\t\t\t\tOptional Header\n-------------------------------------------------------------------------")
-
-    MAGIC                                        = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.Magic))
-    MajorLinkerVersion                           = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MajorLinkerVersion))
-    MinorLinkerVersion                           = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MinorLinkerVersion))
-    SizeOfCode                                   = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfCode))
-    SizeOfInitializedData                        = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfInitializedData))
-    SizeOfUninitializedData                      = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfUninitializedData))
-    AddressOfEntryPoint                          = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.AddressOfEntryPoint))
-    BaseOfCode                                   = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.BaseOfCode))
-    BaseOfData                                   = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.BaseOfData))
-    ImageBase                                    = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.ImageBase))
-    SectionAlignment                             = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SectionAlignment))
-    FileAlignment                                = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.FileAlignment))
-    MajorOperatingSystemVersion                  = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MajorOperatingSystemVersion))
-    MinorOperatingSystemVersion                  = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MinorOperatingSystemVersion))
-    MajorImageVersion                            = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MajorImageVersion))
-    MinorImageVersion                            = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MinorImageVersion))
-    MajorSubsystemVersion                        = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MajorSubsystemVersion))
-    MinorSubsystemVersion                        = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MinorSubsystemVersion))
-    SizeOfImage                                  = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfImage))
-    SizeOfHeaders                                = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfHeaders))
-    CheckSum                                     = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.CheckSum))
-    Subsystem                                    = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.Subsystem))
-    DllCharacteristics                           = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.DllCharacteristics))
-    SizeOfStackReserve                           = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfStackReserve))
-    SizeOfStackCommit                            = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfStackCommit))
-    SizeOfHeapReserve                            = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfHeapReserve))
-    SizeOfHeapCommit                             = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfHeapCommit))
-    LoaderFlags                                  = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.LoaderFlags))
-    NumberOfRvaAndSizes                          = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.NumberOfRvaAndSizes))
+    
+    MAGIC                                        = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.Magic) if hasattr(PE_FILE.OPTIONAL_HEADER, 'Magic') else '0x0')
+    MajorLinkerVersion                           = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MajorLinkerVersion) if hasattr(PE_FILE.OPTIONAL_HEADER, 'MajorLinkerVersion') else '0x0')
+    MinorLinkerVersion                           = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MinorLinkerVersion) if hasattr(PE_FILE.OPTIONAL_HEADER, 'MinorLinkerVersion') else '0x0')
+    SizeOfCode                                   = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfCode) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfCode') else '0x0')
+    SizeOfInitializedData                        = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfInitializedData) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfInitializedData') else '0x0')
+    SizeOfUninitializedData                      = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfUninitializedData) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfUninitializedData') else '0x0')
+    AddressOfEntryPoint                          = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.AddressOfEntryPoint) if hasattr(PE_FILE.OPTIONAL_HEADER, 'AddressOfEntryPoint') else '0x0')
+    BaseOfCode                                   = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.BaseOfCode) if hasattr(PE_FILE.OPTIONAL_HEADER, 'BaseOfCode') else '0x0')
+    BaseOfData                                   = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.BaseOfData) if hasattr(PE_FILE.OPTIONAL_HEADER, 'BaseOfData') else '0x0')
+    ImageBase                                    = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.ImageBase) if hasattr(PE_FILE.OPTIONAL_HEADER, 'ImageBase') else '0x0')
+    SectionAlignment                             = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SectionAlignment) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SectionAlignment') else '0x0')
+    FileAlignment                                = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.FileAlignment) if hasattr(PE_FILE.OPTIONAL_HEADER, 'FileAlignment') else '0x0')
+    MajorOperatingSystemVersion                  = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MajorOperatingSystemVersion) if hasattr(PE_FILE.OPTIONAL_HEADER, 'MajorOperatingSystemVersion') else '0x0')
+    MinorOperatingSystemVersion                  = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MinorOperatingSystemVersion) if hasattr(PE_FILE.OPTIONAL_HEADER, 'MinorOperatingSystemVersion') else '0x0')
+    MajorImageVersion                            = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MajorImageVersion) if hasattr(PE_FILE.OPTIONAL_HEADER, 'MajorImageVersion') else '0x0')
+    MinorImageVersion                            = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MinorImageVersion) if hasattr(PE_FILE.OPTIONAL_HEADER, 'MinorImageVersion') else '0x0')
+    MajorSubsystemVersion                        = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MajorSubsystemVersion) if hasattr(PE_FILE.OPTIONAL_HEADER, 'MajorSubsystemVersion') else '0x0')
+    MinorSubsystemVersion                        = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.MinorSubsystemVersion) if hasattr(PE_FILE.OPTIONAL_HEADER, 'MinorSubsystemVersion') else '0x0')
+    SizeOfImage                                  = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfImage) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfImage') else '0x0')
+    SizeOfHeaders                                = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfHeaders) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfHeaders') else '0x0')
+    CheckSum                                     = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.CheckSum) if hasattr(PE_FILE.OPTIONAL_HEADER, 'CheckSum') else '0x0')
+    Subsystem                                    = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.Subsystem) if hasattr(PE_FILE.OPTIONAL_HEADER, 'Subsystem') else '0x0')
+    DllCharacteristics                           = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.DllCharacteristics) if hasattr(PE_FILE.OPTIONAL_HEADER, 'DllCharacteristics') else '0x0')
+    SizeOfStackReserve                           = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfStackReserve) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfStackReserve') else '0x0')
+    SizeOfStackCommit                            = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfStackCommit) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfStackCommit') else '0x0')
+    SizeOfHeapReserve                            = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfHeapReserve) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfHeapReserve') else '0x0')
+    SizeOfHeapCommit                             = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.SizeOfHeapCommit) if hasattr(PE_FILE.OPTIONAL_HEADER, 'SizeOfHeapCommit') else '0x0')
+    LoaderFlags                                  = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.LoaderFlags) if hasattr(PE_FILE.OPTIONAL_HEADER, 'LoaderFlags') else '0x0')
+    NumberOfRvaAndSizes                          = replacethehex(hex(PE_FILE.OPTIONAL_HEADER.NumberOfRvaAndSizes) if hasattr(PE_FILE.OPTIONAL_HEADER, 'NumberOfRvaAndSizes') else '0x0')
     Data_Directory                               = PE_FILE.OPTIONAL_HEADER.DATA_DIRECTORY
 
     print("Offset   \t\tName\t\t\t\t Value\n")
@@ -270,7 +271,7 @@ def show():
     for entry in PE_FILE.DIRECTORY_ENTRY_IMPORT:
         print(entry.dll.decode('utf-8'))
         for imps in entry.imports:
-            print('\t', hex(imps.address), imps.name)
+            print('\t', hex(imps.address), '\t', (imps.ordinal if (imps.name is None) else imps.name.decode('utf-8')))
 
 def disassemble():
     pe = pefile.PE(args.file)
