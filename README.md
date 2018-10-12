@@ -6,7 +6,7 @@ Advanced Portable Executable File Analyzer
 ## Usage
   python pyanalyzer.py --file file.exe --show all
   
-  python pyanalyzer.py --file file.exe --disassemble all|file-path|general|dos-header|file-header|optional-header|data-directory|section-headers|imports
+  python pyanalyzer.py --file file.exe --disassemble all
   
 ## Installation
   ```
