@@ -1,10 +1,10 @@
 # peanalyzer
 Advanced Portable Executable File Analyzer
 
-**_Python 3.6.4 & Linux(for disassemble option) : Tested (Working)_**
+**_Python 3.5.2 : Tested (Working)_**
 
 ## Usage
-  python pyanalyzer.py --file file.exe --show all
+  python pyanalyzer.py --file file.exe --show all|file-path|general|dos-header|file-header|optional-header|data-directory|section-headers|imports
   
   python pyanalyzer.py --file file.exe --disassemble all
   
