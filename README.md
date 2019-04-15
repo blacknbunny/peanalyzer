@@ -4,9 +4,9 @@ Advanced Portable Executable File Analyzer
 **_Python 3.5.2 : Tested (Working)_**
 
 ## Usage
-  python pyanalyzer.py --file file.exe --show all|file-path|general|dos-header|file-header|optional-header|data-directory|section-headers|imports
+  python peanalyzer.py --file file.exe --show all|file-path|general|dos-header|file-header|optional-header|data-directory|section-headers|imports
   
-  python pyanalyzer.py --file file.exe --disassemble all
+  python peanalyzer.py --file file.exe --disassemble all
   
 ## Installation
   ```
